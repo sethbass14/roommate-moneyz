@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  total: MyString
+  category: MyString
+  due_date: MyString
+
+two:
+  name: MyString
+  total: MyString
+  category: MyString
+  due_date: MyString
