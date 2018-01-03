@@ -1,5 +1,5 @@
 const User = (function createUserClass() {
-  const allUsers = []
+  let currentUser
 
   return class User {
     constructor(data) {
@@ -8,9 +8,15 @@ const User = (function createUserClass() {
       this.phone = data.phone
       this.payer_bills = []
       this.owned_bills = []
-
+      currentUser = this
     }
+
+    static currentUser() {
+      return currentUser
+    }
+
   }
+
 }
 
 )()

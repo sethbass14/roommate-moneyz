@@ -30,27 +30,31 @@ const Bill = (function createBillClass() {
 
   }
 
-  static billHistory() {
+  static billTable(bill) {
     App.main.innerHTML = `
-    <table id="payerTable">
+      <table id="">
       <tr>
-        <th>Name</th>
-        <th>Amount</th>
-        <th>Category</th>
-        <th>Due Date</th>
-        <th>Edit</th>
-        <th>Delete</th>
+      <th>Name</th>
+      ${bill.amount? <th>Amount</th> : <th>Total</th>}
+      <th>Category</th>
+      <th>Due Date</th>
+      <th>Edit</th>
+      <th>Delete</th>
       </tr>
-    </table>`
+      </table>`
 
-    Adapter.fetchPayerBills().then(json => {
-      json.structureBills.forEach(obj => {
-        let newBill = new Bill(obj.bill)
-        let newPayerBillAmount = obj.payer_bill.amount
-        let newPayerBillId = obj.payer_bill.id
-        document.getElementById('payerTable').innerHTML += newBill.renderPayerBillRow(newPayerBillAmount, newPayerBillId)
-      })
-    })
+  }
+
+  static billHistory() {
+
+    if (User.currentUser().payer_bills.length ) {
+      // iterate throught the array and renderPayerBillRow
+    }
+
+
+
+  // document.getElementById('payerTable').innerHTML += newBill.renderPayerBillRow(newPayerBillAmount, newPayerBillId)
+
   }
 
 
