@@ -49,6 +49,10 @@ body {
   border-radius: 0;
 }
 
+.header-row {
+  background-color: #0070FF;
+}
+
 /*
  * Dashboard
  */
