@@ -11,13 +11,20 @@ class Api::V1::HousesController < ApplicationController
   end
 
  def create
-    house = House.create(house_params)
-    render json: house, status: 201
+    house = House.new(house_params)
+    if house.save
+      render json: house, status: 201
+    else
+      render json: {message: "Error with your data"}, status: 400
+    end
   end
 
  def update
-    @house.update(house_params)
-    render json: @house, status: 200
+    if @house.update(house_params)
+      render json: @house, status: 200
+    else
+      render json: {message: "Error with your data"}, status: 400
+    end
   end
 
   def destroy

@@ -11,13 +11,22 @@ class Api::V1::BillsController < ApplicationController
   end
 
  def create
-    bill = Bill.create(bill_params)
-    render json: bill, status: 201
+
+    bill = Bill.new(bill_params)
+    if bill.save
+      render json: bill, status: 201
+    else
+      render json: {message: "Error with your data"}, status: 400
+    end
   end
 
  def update
-    @bill.update(bill_params)
-    render json: @bill, status: 200
+
+    if @bill.update(bill_params)
+      render json: @bill, status: 200
+    else
+      render json: {message: "Error with your data"}, status: 400
+    end
   end
 
   def destroy

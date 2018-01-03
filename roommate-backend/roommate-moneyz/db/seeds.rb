@@ -8,8 +8,8 @@
 
 House.create(name: "Sock House", address: "123 Fig Street")
 User.create(name: "Erica", phone: "1234567890", house_id: 1)
-User.create(name: "Connie", phone: "304958309", house_id: 1)
-User.create(name: "Seth", phone: "12093809", house_id: 1)
+User.create(name: "Connie", phone: "1304958309", house_id: 1)
+User.create(name: "Seth", phone: "1120938092", house_id: 1)
 Bill.create(name: "Electricity", total: 90.0, category: "Utilities", due_date: "Jan 31, 2018", owner_id: 1)
 
 PayerBill.create(bill_id: 1, payer_id: 2, amount: 30.0)

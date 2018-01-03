@@ -4,6 +4,8 @@ Rails.application.routes.draw do
       resources :houses
       resources :users
       resources :bills
+      delete 'payer', to: 'users#delete_payer_bill'
     end
   end
+
 end

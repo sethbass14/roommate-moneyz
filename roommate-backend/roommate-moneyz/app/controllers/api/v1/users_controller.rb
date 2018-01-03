@@ -11,18 +11,31 @@ class Api::V1::UsersController < ApplicationController
   end
 
  def create
-    user = User.create(user_params)
-    render json: user, status: 201
+    user = User.new(user_params)
+    if user.save
+      render json: user, status: 201
+    else
+        render json: {message: "Error with your data"}, status: 400
+    end
   end
 
  def update
-    @user.update(user_params)
-    render json: @user, status: 200
+    if @user.update(user_params)
+      render json: @user, status: 200
+    else
+      render json: {message: "Error with your data"}, status: 400
+    end
   end
 
   def destroy
     @user.destroy
     render json: {message: "successfully destroyed", userId: @user.id }
+  end
+
+  def delete_payer_bill
+    @payer_bill = PayerBill.where(payer_id: params[:payer_id], bill_id: params[:bill_id])[0]
+    PayerBill.destroy(@payer_bill.id)
+    render json: {message: "successfully destroyed", payerBillId: @payer_bill.id }
   end
 
  private
