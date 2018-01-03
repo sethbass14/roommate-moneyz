@@ -48,7 +48,11 @@ const Bill = (function createBillClass() {
   static billHistory() {
 
     if (User.currentUser().payer_bills.length ) {
-      // iterate throught the array and renderPayerBillRow
+      // iterate through the array and renderPayerBillRow
+    }
+
+    if (User.currentUser().owned_bills.length) {
+      //iterate throught the array and render an instance method to generate html
     }
 
 
