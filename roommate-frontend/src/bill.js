@@ -3,6 +3,7 @@ const Bill = (function createBillClass() {
 
   return class Bill {
     constructor(data) {
+      this.id = data.id
       this.name = data.name
       this.total = data.total
       this.category = data.category
@@ -11,15 +12,15 @@ const Bill = (function createBillClass() {
       allBills.push(this)
     }
 
-  renderBillRow() {
+  renderPayerBillRow(newPayerBillAmount, newPayerBillId) {
     return `
-    <tr data-id=${this.id}>
+    <tr data-id=${newPayerBillId}>
       <td>${this.name}</td>
-      <td>${this.total}</td>
+      <td>${newPayerBillAmount}</td>
       <td>${this.category}</td>
       <td>${this.due_date}</td>
-      <td><button data-id=${this.id} id="edit">Edit</button></td>
-      <td><button data-id=${this.id} id="delete">Delete</button></td>
+      <td><button data-id=${newPayerBillId} id="edit">Edit</button></td>
+      <td><button data-id=${newPayerBillId} id="delete">Delete</button></td>
     </tr>`
   }
 
@@ -34,7 +35,7 @@ const Bill = (function createBillClass() {
     <table id="payerTable">
       <tr>
         <th>Name</th>
-        <th>Total</th>
+        <th>Amount</th>
         <th>Category</th>
         <th>Due Date</th>
         <th>Edit</th>
@@ -42,15 +43,15 @@ const Bill = (function createBillClass() {
       </tr>
     </table>`
 
-    Adapter.fetchPayerBills().then(json => console.log(json.payer_bills))
-    // Adapter.fetchPayerBills().then(json => {
-    //   // json.payer_bills.forEach(bill => {
-    //   //   // let newBill = new Bill(bill)
-    //   //   // // debugger
-    //   //   // document.getElementById('payerTable').appendChild(newBill.renderBillRow())
-    //   // })
-    // })
-    }
+    Adapter.fetchPayerBills().then(json => {
+      json.structureBills.forEach(obj => {
+        let newBill = new Bill(obj.bill)
+        let newPayerBillAmount = obj.payer_bill.amount
+        let newPayerBillId = obj.payer_bill.id
+        document.getElementById('payerTable').innerHTML += newBill.renderPayerBillRow(newPayerBillAmount, newPayerBillId)
+      })
+    })
+  }
 
 
 
