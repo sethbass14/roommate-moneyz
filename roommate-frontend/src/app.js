@@ -13,6 +13,9 @@ class App {
         payBill.amount = payerBill.amount
         payBill.owner = payerBill.bill.owner_name
       })
+
+      const a = new House(user.house)
+      debugger
     })
 
     App.main = document.getElementById("main")
@@ -26,10 +29,8 @@ class App {
   static navFunctions(event) {
     if (event.target.id === "house") {
       return User.house()
-    } else if (event.target.id === "bills") {
-      console.log("billz")
     } else if (event.target.id === "createBill") {
-      return Bill.createBill()
+      return Bill.createBillForm()
     } else if (event.target.id === "billHistory") {
       return User.billHistory()
     }

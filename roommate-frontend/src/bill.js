@@ -29,7 +29,11 @@ const Bill = (function createBillClass() {
     }
 
     static billHeaderPayer() {
+      document.getElementById('main-header').innerText = "Bills"
+
       App.main.innerHTML = `
+        <br>
+        <h2>Money Owed</h2>
         <table id="billHeaderPayer" class="table">
         <tr>
         <th>Name</th>
@@ -49,13 +53,14 @@ const Bill = (function createBillClass() {
 
     static billHeaderOwned() {
       App.main.innerHTML += `
+        <br>
+        <h2>Money$$$ To Collect</h2>
         <table id="billHeaderOwned" class="table">
         <tr>
         <th>Name</th>
         <th>Total</th>
         <th>Category</th>
         <th>Due Date</th>
-        <th>Payers</th>
         <th>Edit</th>
         <th>Delete</th>
         </tr>
@@ -73,18 +78,31 @@ const Bill = (function createBillClass() {
         <td>${this.total}</td>
         <td>${this.category}</td>
         <td>${this.due_date}</td>
-        <td>Payers</td>
         <td><button data-id=${this.id} id="edit">Edit</button></td>
         <td><button data-id=${this.id} id="delete">Delete</button></td>
       </tr>`
     }
 
     static noPayerBills() {
-      App.main.innerHTML = '<h2>You do not owe any money right now.</h2>'
+      App.main.innerHTML = '<h3>You do not owe any money right now.</h3>'
     }
 
     static noOwnedBills() {
-      App.main.innerHTML += '<h2>None of your roommates owe you any money right now.</h2>'
+      App.main.innerHTML += '<h3>None of your roommates owe you any money right now.</h3>'
+    }
+
+    static createBillForm() {
+      App.main.innerHTML = `
+        <form id="createBill">
+          <input name="name"></input>
+          <input name="total"></input>
+          <input name="category"></input>
+          <input name="due_date"></input>
+          <div class ="form-check">
+            <input></input>
+          </div>
+        </form>
+      `
     }
 
   }
