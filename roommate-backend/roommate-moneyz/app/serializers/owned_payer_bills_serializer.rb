@@ -1,5 +1,5 @@
 class OwnedPayerBillsSerializer < ActiveModel::Serializer
-  attributes :id, :amount, :payer_name
+  attributes :id, :amount, :payer_name, :paid
 
   def payer_name
     object.payer.name
