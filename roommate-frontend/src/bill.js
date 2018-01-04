@@ -35,7 +35,7 @@ const Bill = (function createBillClass() {
       <table id="">
       <tr>
       <th>Name</th>
-      ${bill.amount? <th>Amount</th> : <th>Total</th>}
+      ${bill.amount ? '<th>Amount</th>' : '<th>Total</th>'}
       <th>Category</th>
       <th>Due Date</th>
       <th>Edit</th>

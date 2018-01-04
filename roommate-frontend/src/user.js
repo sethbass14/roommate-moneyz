@@ -1,17 +1,19 @@
 const User = (function createUserClass() {
-  let currentUser
+  let privateCurrentUser
 
   return class User {
     constructor(data) {
       this.id = data.id
       this.name = data.name
       this.phone = data.phone
-      this.payer_bills = []
-      this.owned_bills = []
-      currentUser = this
+      this.house = data.house
+      this.payer_bills = data.payer_bills
+      this.owned_bills = data.owned_bills
+      privateCurrentUser = this
     }
 
     static currentUser() {
+      const currentUser = privateCurrentUser
       return currentUser
     }
 
