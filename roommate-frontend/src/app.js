@@ -12,10 +12,10 @@ class App {
         let payBill = new Bill(payerBill.bill)
         payBill.amount = payerBill.amount
         payBill.owner = payerBill.bill.owner_name
+        console.log(payBill)
       })
 
       const a = new House(user.house)
-      debugger
     })
 
     App.main = document.getElementById("main")
@@ -23,6 +23,8 @@ class App {
     document.getElementById("navigation").addEventListener("click", App.navFunctions)
 
     document.getElementById("content").addEventListener("click", App.contentFunctions)
+
+
 
   }
 
@@ -36,7 +38,14 @@ class App {
     }
   }
 
-  static contentFunctions() {
-    console.log('content')
+  static contentFunctions(event) {
+    switch (event.target.id) {
+      case 'delete':
+        event.target.parentElement.parentElement.remove()
+        Adapter.deleteBill(parseInt(event.target.dataset.id))
+
+        break;
+    }
   }
+
 }

@@ -3,12 +3,14 @@ const Bill = (function createBillClass() {
 
   return class Bill {
     constructor(data) {
-      this.id = data.id
-      this.name = data.name
-      this.total = data.total
-      this.category = data.category
-      this.due_date = data.due_date
-      allBills.push(this)
+      if (data) {
+        this.id = data.id
+        this.name = data.name
+        this.total = data.total
+        this.category = data.category
+        this.due_date = data.due_date
+        allBills.push(this)
+      }
     }
 
     static allBills() {
@@ -66,7 +68,7 @@ const Bill = (function createBillClass() {
         </tr>
         </table>`
 
-        let rows = Bill.allBills().filter(bill => bill.total).map(bill => bill.renderOwnedBillRow()).join("")
+        let rows = Bill.allBills().filter(bill => bill.payers).map(bill => bill.renderOwnedBillRow()).join("")
 
         document.getElementById('billHeaderOwned').innerHTML += rows
     }
