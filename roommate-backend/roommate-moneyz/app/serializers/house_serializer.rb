@@ -1,5 +1,6 @@
 class HouseSerializer < ActiveModel::Serializer
   attributes :id, :name, :address
-  has_many :users
-  has_many :owned_bills
+
+  has_many :users, serializer: HouseUsersSerializer
+
 end
