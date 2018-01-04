@@ -47,6 +47,38 @@ const Bill = (function createBillClass() {
       document.getElementById('billHeaderPayer').innerHTML += rows
     }
 
+    static billHeaderOwned() {
+      App.main.innerHTML += `
+        <table id="billHeaderOwned" class="table">
+        <tr>
+        <th>Name</th>
+        <th>Total</th>
+        <th>Category</th>
+        <th>Due Date</th>
+        <th>Payers</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        </tr>
+        </table>`
+
+        let rows = Bill.allBills().filter(bill => bill.total).map(bill => bill.renderOwnedBillRow()).join("")
+
+        document.getElementById('billHeaderOwned').innerHTML += rows
+    }
+
+    renderOwnedBillRow() {
+      return `
+      <tr data-id=${this.id}>
+        <td>${this.name}</td>
+        <td>${this.total}</td>
+        <td>${this.category}</td>
+        <td>${this.due_date}</td>
+        <td>Payers</td>
+        <td><button data-id=${this.id} id="edit">Edit</button></td>
+        <td><button data-id=${this.id} id="delete">Delete</button></td>
+      </tr>`
+    }
+
     static noPayerBills() {
       App.main.innerHTML = '<h2>You do not owe any money right now.</h2>'
     }
