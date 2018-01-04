@@ -5,10 +5,13 @@ class App {
     .then(data => new User(data))
     .then(user => {
       user.owned_bills.forEach(bill => {
-        new Bill(bill)
+        let ownedBill = new Bill(bill)
+        ownedBill.payers = bill.payer_bills
       })
       user.payer_bills.forEach(payerBill => {
-        new Bill(payerBill.bill)
+        let payBill = new Bill(payerBill.bill)
+        payBill.amount = payerBill.amount
+        payBill.owner = payerBill.bill.owner_name
       })
     })
 
@@ -28,7 +31,7 @@ class App {
     } else if (event.target.id === "createBill") {
       return Bill.createBill()
     } else if (event.target.id === "billHistory") {
-      return Bill.billHistory()
+      return User.billHistory()
     }
   }
 

@@ -17,8 +17,21 @@ const User = (function createUserClass() {
       return currentUser
     }
 
+    static billHistory() {
+      if (User.currentUser().payer_bills.length) {
+        Bill.billHeaderPayer();
+      } else if (User.currentUser().payer_bills.length === 0) {
+        Bill.noPayerBills();
+      }
+
+      if (User.currentUser().owned_bills.length) {
+        Bill.billHeaderOwned();
+      } else if (User.currentUser().owned_bills.length === 0) {
+        Bill.noOwnedBills();
+      }
+    }
+
+
   }
-
 }
-
 )()

@@ -15,57 +15,45 @@ const Bill = (function createBillClass() {
       return [...allBills]
     }
 
-  renderPayerBillRow(newPayerBillAmount, newPayerBillId) {
-    return `
-    <tr data-id=${newPayerBillId}>
-      <td>${this.name}</td>
-      <td>${newPayerBillAmount}</td>
-      <td>${this.category}</td>
-      <td>${this.due_date}</td>
-      <td><button data-id=${newPayerBillId} id="edit">Edit</button></td>
-      <td><button data-id=${newPayerBillId} id="delete">Delete</button></td>
-    </tr>`
-  }
-
-  static createBill() {
-    // form + post request
-    // console.log(bill)
-
-  }
-
-  static billTable(bill) {
-    App.main.innerHTML = `
-      <table id="">
-      <tr>
-      <th>Name</th>
-      ${bill.amount ? '<th>Amount</th>' : '<th>Total</th>'}
-      <th>Category</th>
-      <th>Due Date</th>
-      <th>Edit</th>
-      <th>Delete</th>
-      </tr>
-      </table>`
-
-  }
-
-  static billHistory() {
-
-    if (User.currentUser().payer_bills.length ) {
-      // iterate through the array and renderPayerBillRow
+    renderPayerBillRow() {
+      return `
+      <tr data-id=${this.id}>
+        <td>${this.name}</td>
+        <td>${this.amount}</td>
+        <td>${this.category}</td>
+        <td>${this.due_date}</td>
+        <td>${this.owner}</td>
+        <td><button data-id=${this.id} id="edit">Edit</button></td>
+        <td><button data-id=${this.id} id="delete">Delete</button></td>
+      </tr>`
     }
 
-    if (User.currentUser().owned_bills.length) {
-      //iterate throught the array and render an instance method to generate html
+    static billHeaderPayer() {
+      App.main.innerHTML = `
+        <table id="billHeaderPayer" class="table">
+        <tr>
+        <th>Name</th>
+        <th>Amount</th>
+        <th>Category</th>
+        <th>Due Date</th>
+        <th>Pay To</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        </tr>
+        </table>`
+
+      let rows = Bill.allBills().filter(bill => bill.amount).map(bill => bill.renderPayerBillRow()).join("")
+
+      document.getElementById('billHeaderPayer').innerHTML += rows
     }
 
+    static noPayerBills() {
+      App.main.innerHTML = '<h2>You do not owe any money right now.</h2>'
+    }
 
-
-  // document.getElementById('payerTable').innerHTML += newBill.renderPayerBillRow(newPayerBillAmount, newPayerBillId)
+    static noOwnedBills() {
+      App.main.innerHTML += '<h2>None of your roommates owe you any money right now.</h2>'
+    }
 
   }
-
-
-
-  }
-
 })()
