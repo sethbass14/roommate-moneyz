@@ -26,6 +26,7 @@ const User = (function createUserClass() {
 
       if (User.currentUser().owned_bills.length) {
         Bill.billHeaderOwned();
+        Bill.buildOwnedRows()
       } else if (User.currentUser().owned_bills.length === 0) {
         Bill.noOwnedBills();
       }

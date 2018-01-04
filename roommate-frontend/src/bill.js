@@ -69,7 +69,7 @@ const Bill = (function createBillClass() {
         <th>Delete</th>
         </tr>
         </table>`
-        Bill.buildOwnedRows()
+        // Bill.buildOwnedRows()
     }
 
     static buildOwnedRows() {

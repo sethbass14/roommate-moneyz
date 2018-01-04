@@ -20,6 +20,7 @@ class App {
 
     App.main = document.getElementById("main")
 
+
     document.getElementById("navigation").addEventListener("click", App.navFunctions)
 
     document.getElementById("content").addEventListener("click", App.contentFunctions)
@@ -46,7 +47,12 @@ class App {
     } else if (event.target.id === 'edit') {
       console.log(event.target.id)
     } else if (event.target.className === 'billName') {
-      console.log(event.target.className)
+      //This is very hairy, but it works. I had to refactor some of the bill rendering functions to reuse the code.
+        App.main.innerHTML = ''
+        Bill.billHeaderOwned()
+        document.getElementById('billHeaderOwned').innerHTML +=
+        Bill.findBillById(parseInt(event.target.parentElement.parentElement.dataset.id)).renderOwnedBillRow()
+
       // return Bill.showBill()
     }
   }
