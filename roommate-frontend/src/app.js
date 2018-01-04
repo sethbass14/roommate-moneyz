@@ -1,8 +1,17 @@
 class App {
   static init() {
 
-    Adapter.fetchUser().then(data => new User(data))
-    
+    Adapter.fetchUser()
+    .then(data => new User(data))
+    .then(user => {
+      user.owned_bills.forEach(bill => {
+        new Bill(bill)
+      })
+      user.payer_bills.forEach(payerBill => {
+        new Bill(payerBill.bill)
+      })
+    })
+
     App.main = document.getElementById("main")
 
     document.getElementById("navigation").addEventListener("click", App.navFunctions)

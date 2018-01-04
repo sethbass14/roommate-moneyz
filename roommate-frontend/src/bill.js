@@ -8,8 +8,11 @@ const Bill = (function createBillClass() {
       this.total = data.total
       this.category = data.category
       this.due_date = data.due_date
-      this.owner_id = data.owner_id
       allBills.push(this)
+    }
+
+    static allBills() {
+      return [...allBills]
     }
 
   renderPayerBillRow(newPayerBillAmount, newPayerBillId) {
