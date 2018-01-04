@@ -49,6 +49,13 @@ body {
   border-radius: 0;
 }
 
+/* allows you to click on the name of the bill in bill history*/
+.billName:hover {
+  color: #157EFB;
+  cursor: pointer;
+
+}
+
 /*
  * Dashboard
  */

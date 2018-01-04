@@ -3,6 +3,7 @@ const Bill = (function createBillClass() {
 
   return class Bill {
     constructor(data) {
+      //added this if statement to account for a user with no owned bill or no payerbill
       if (data) {
         this.id = data.id
         this.name = data.name
@@ -53,7 +54,8 @@ const Bill = (function createBillClass() {
       document.getElementById('billHeaderPayer').innerHTML += rows
     }
 
-    static billHeaderOwned() {
+    // I abstracted this funcionality below to be able to reuse the code.
+   static billHeaderOwned() {
       App.main.innerHTML += `
         <br>
         <h2>Money$$$ To Collect</h2>
@@ -67,22 +69,31 @@ const Bill = (function createBillClass() {
         <th>Delete</th>
         </tr>
         </table>`
+        Bill.buildOwnedRows()
+    }
 
-        let rows = Bill.allBills().filter(bill => bill.payers).map(bill => bill.renderOwnedBillRow()).join("")
+    static buildOwnedRows() {
+      let rows = Bill.allBills().filter(bill => bill.payers).map(bill => bill.renderOwnedBillRow()).join("")
 
-        document.getElementById('billHeaderOwned').innerHTML += rows
+      document.getElementById('billHeaderOwned').innerHTML += rows
     }
 
     renderOwnedBillRow() {
+      //added the className to target this element with CSS and add an event listener for a click.
       return `
       <tr data-id=${this.id}>
-        <td>${this.name}</td>
+        <td><p class="billName">${this.name}</p></td>
         <td>${this.total}</td>
         <td>${this.category}</td>
         <td>${this.due_date}</td>
         <td><button data-id=${this.id} id="edit">Edit</button></td>
         <td><button data-id=${this.id} id="delete">Delete</button></td>
       </tr>`
+    }
+
+    // A way to grab a bill by its id
+    static findBillById(id) {
+      return Bill.allBills().find(bill => bill.id === id)
     }
 
     static noPayerBills() {

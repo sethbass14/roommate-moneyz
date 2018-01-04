@@ -38,13 +38,16 @@ class App {
     }
   }
 
-  static contentFunctions(event) {
-    switch (event.target.id) {
-      case 'delete':
-        event.target.parentElement.parentElement.remove()
-        Adapter.deleteBill(parseInt(event.target.dataset.id))
 
-        break;
+  static contentFunctions(event) {
+    if (event.target.id === "delete") {
+      event.target.parentElement.parentElement.remove()
+      Adapter.deleteBill(parseInt(event.target.dataset.id))
+    } else if (event.target.id === 'edit') {
+      console.log(event.target.id)
+    } else if (event.target.className === 'billName') {
+      console.log(event.target.className)
+      // return Bill.showBill()
     }
   }
 
