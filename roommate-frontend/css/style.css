@@ -49,6 +49,10 @@ body {
   border-radius: 0;
 }
 
+#main-image {
+  display: block;
+  margin: auto;
+}
 /*
  * Dashboard
  */

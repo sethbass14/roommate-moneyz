@@ -3,12 +3,14 @@ const Bill = (function createBillClass() {
 
   return class Bill {
     constructor(data) {
-      this.id = data.id
-      this.name = data.name
-      this.total = data.total
-      this.category = data.category
-      this.due_date = data.due_date
-      allBills.push(this)
+      if (data) {
+        this.id = data.id
+        this.name = data.name
+        this.total = data.total
+        this.category = data.category
+        this.due_date = data.due_date
+        allBills.push(this)
+      }
     }
 
     static allBills() {
@@ -23,13 +25,12 @@ const Bill = (function createBillClass() {
         <td>${this.category}</td>
         <td>${this.due_date}</td>
         <td>${this.owner}</td>
-        <td><button data-id=${this.id} id="edit">Edit</button></td>
-        <td><button data-id=${this.id} id="delete">Delete</button></td>
+        <td><button data-id=${this.id} id="edit">Paid</button></td>
       </tr>`
     }
 
     static billHeaderPayer() {
-      document.getElementById('main-header').innerText = "Bills"
+      document.getElementById('main-header').innerHTML = "Current Bills"
 
       App.main.innerHTML = `
         <br>
@@ -41,8 +42,7 @@ const Bill = (function createBillClass() {
         <th>Category</th>
         <th>Due Date</th>
         <th>Pay To</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <th>Paid</th>
         </tr>
         </table>`
 
@@ -66,7 +66,7 @@ const Bill = (function createBillClass() {
         </tr>
         </table>`
 
-        let rows = Bill.allBills().filter(bill => bill.total).map(bill => bill.renderOwnedBillRow()).join("")
+        let rows = Bill.allBills().filter(bill => bill.payers).map(bill => bill.renderOwnedBillRow()).join("")
 
         document.getElementById('billHeaderOwned').innerHTML += rows
     }

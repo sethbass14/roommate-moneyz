@@ -17,7 +17,7 @@ const User = (function createUserClass() {
       return currentUser
     }
 
-    static billHistory() {
+    static currentBills() {
       if (User.currentUser().payer_bills.length) {
         Bill.billHeaderPayer();
       } else if (User.currentUser().payer_bills.length === 0) {
@@ -31,6 +31,13 @@ const User = (function createUserClass() {
       }
     }
 
+    static billHistory() {
+
+    }
+
+    static houseInfo() {
+      House.renderHouse()
+    }
 
   }
 }

@@ -13,10 +13,9 @@ class App {
         payBill.amount = payerBill.amount
         payBill.owner = payerBill.bill.owner_name
       })
-
-      const a = new House(user.house)
-      debugger
-    })
+      new House(user.house)
+      })
+    .then(house => User.houseInfo(house))
 
     App.main = document.getElementById("main")
 
@@ -24,19 +23,21 @@ class App {
 
     document.getElementById("content").addEventListener("click", App.contentFunctions)
 
-  }
 
+  }
   static navFunctions(event) {
     if (event.target.id === "house") {
-      return User.house()
+      return User.houseInfo()
     } else if (event.target.id === "createBill") {
       return Bill.createBillForm()
+    } else if (event.target.id === "currentBills") {
+      return User.currentBills()
     } else if (event.target.id === "billHistory") {
       return User.billHistory()
     }
   }
 
   static contentFunctions() {
-    console.log('content')
+
   }
 }
