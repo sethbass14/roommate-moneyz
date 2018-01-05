@@ -25,7 +25,7 @@ const Bill = (function createBillClass() {
         <td>${this.category}</td>
         <td>${this.due_date}</td>
         <td>${this.owner}</td>
-        <td><button data-id=${this.id} id="edit">Paid</button></td>
+        <td><button data-id=${this.id} id="paid">Paid</button></td>
       </tr>`
     }
 
@@ -42,11 +42,11 @@ const Bill = (function createBillClass() {
         <th>Category</th>
         <th>Due Date</th>
         <th>Pay To</th>
-        <th>Paid</th>
+        <th>Paid?</th>
         </tr>
         </table>`
 
-      let rows = Bill.allBills().filter(bill => bill.amount).map(bill => bill.renderPayerBillRow()).join("")
+      let rows = Bill.allBills().filter(bill => bill.amount && bill.paid === false).map(bill => bill.renderPayerBillRow()).join("")
 
       document.getElementById('billHeaderPayer').innerHTML += rows
     }
@@ -105,5 +105,51 @@ const Bill = (function createBillClass() {
       `
     }
 
+    static paidBill(){
+      let billId = parseInt(event.target.dataset.id)
+      // let payerBillTable = document.getElementById("billHeaderPayer")
+      // let paidBillRow = document.getElementById("billId").parentElement.parentElement
+      // payerBillTable.removeChild(paidBillRow)
+
+      fetch('http://localhost:3000/api/v1/paid', {
+        method: "PATCH",
+        headers: {"Accept": "application/json", "Content-Type": "application/json"},
+        body: JSON.stringify({bill_id: `${billId}`, payer_id: 2})
+      })
+
+    }
+
+    static renderBillHistory(){
+      document.getElementById('main-header').innerHTML = "Paid Bill History"
+
+      App.main.innerHTML = `
+        <br>
+        <table id="paidBillHistory" class="table">
+        <tr>
+        <th>Name</th>
+        <th>Amount</th>
+        <th>Category</th>
+        <th>Due Date</th>
+        <th>Paid To</th>
+        <th>Paid On</th>
+        </tr>
+        </table>`
+
+      let rows = Bill.allBills().filter(bill => bill.amount && bill.paid === true).map(bill => bill.renderBillHistoryRow()).join("")
+
+      document.getElementById('paidBillHistory').innerHTML += rows
+    }
+
+    renderBillHistoryRow() {
+      return `
+      <tr data-id=${this.id}>
+        <td>${this.name}</td>
+        <td>${this.amount}</td>
+        <td>${this.category}</td>
+        <td>${this.due_date}</td>
+        <td>${this.owner}</td>
+        <td>placeholder</td>
+      </tr>`
+    }
   }
 })()

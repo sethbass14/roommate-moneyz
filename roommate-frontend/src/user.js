@@ -32,7 +32,7 @@ const User = (function createUserClass() {
     }
 
     static billHistory() {
-
+      Bill.renderBillHistory()
     }
 
     static houseInfo() {

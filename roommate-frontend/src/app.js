@@ -12,6 +12,7 @@ class App {
         let payBill = new Bill(payerBill.bill)
         payBill.amount = payerBill.amount
         payBill.owner = payerBill.bill.owner_name
+        payBill.paid = payerBill.paid
       })
       new House(user.house)
       })
@@ -36,8 +37,9 @@ class App {
       return User.billHistory()
     }
   }
-
   static contentFunctions() {
-
+    if (event.target.id === "paid") {
+      return Bill.paidBill()
+    }
   }
 }
