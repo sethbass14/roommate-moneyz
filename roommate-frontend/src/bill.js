@@ -22,7 +22,7 @@ const Bill = (function createBillClass() {
       return `
       <tr data-id=${this.id}>
         <td>${this.name}</td>
-        <td>${this.amount}</td>
+        <td>$${this.amount}</td>
         <td>${this.category}</td>
         <td>${this.due_date}</td>
         <td>${this.owner}</td>
@@ -81,7 +81,7 @@ const Bill = (function createBillClass() {
       return `
       <tr data-id=${this.id}>
         <td><p class="billName">${this.name}</p></td>
-        <td>${this.total}</td>
+        <td>$${this.total}</td>
         <td>${this.category}</td>
         <td>${this.due_date}</td>
         <td><button class="btn" data-id=${this.id} id="edit">Edit</button></td>
@@ -93,7 +93,7 @@ const Bill = (function createBillClass() {
       return `
       <tr data-id=${this.id}>
         <td><p class="billName">${this.name}</p></td>
-        <td>${this.total}</td>
+        <td>$${this.total}</td>
         <td>${this.category}</td>
         <td>${this.due_date}</td>
       </tr>`
