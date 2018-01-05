@@ -107,9 +107,9 @@ const Bill = (function createBillClass() {
 
     static paidBill(){
       let billId = parseInt(event.target.dataset.id)
-      // let payerBillTable = document.getElementById("billHeaderPayer")
-      // let paidBillRow = document.getElementById("billId").parentElement.parentElement
-      // payerBillTable.removeChild(paidBillRow)
+      let parentElement = event.target.parentElement.parentElement.parentElement
+      let childElement = event.target.parentElement.parentElement
+      parentElement.removeChild(childElement)
 
       fetch('http://localhost:3000/api/v1/paid', {
         method: "PATCH",
