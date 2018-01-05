@@ -226,6 +226,7 @@ const Bill = (function createBillClass() {
         User.currentUser().owned_bills.push(bill)
         // replace with show Bill render on merge
         User.ownedBillShow(bill.id)
+        document.getElementById('main-header').innerText = "Your Bill"
         // also need to update Table to reflect change
       })
 
