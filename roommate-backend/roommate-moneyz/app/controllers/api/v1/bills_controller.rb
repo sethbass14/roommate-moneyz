@@ -11,7 +11,6 @@ class Api::V1::BillsController < ApplicationController
   end
 
  def create
-
     bill = Bill.new(bill_params["bill"])
     if bill.save
       payers = bill_params["payers"]
@@ -23,7 +22,6 @@ class Api::V1::BillsController < ApplicationController
         bill.payers << user
         current = bill.payer_bills.last
 
-        # grab associated amount and set it to curent instance of payerbill
         amount = 0
         payers.each do |obj| 
           if obj["payer"] == user.id
@@ -31,26 +29,10 @@ class Api::V1::BillsController < ApplicationController
           end
           amount
         end
-        # byebug
-        # how do we save value from params
-        # byebug
 
         current.amount = amount.to_f
         current.save
       end
-
-      # update payerBill with amount
-
-      # bill.payers.each do |payerbill|
-
-      # end
-      # payers.each do |obj|
-      #   payerBill = PayerBill.all.find do |payerbill|
-      #     payerbill.payer_id = obj["payer"][0] && payerbill.bill_id = bill.id
-      #   end
-      #   payerBill.amount = obj["amount"][0].to_f
-      #   payerBill.save
-      # end
 
       render json: bill, status: 201
     else

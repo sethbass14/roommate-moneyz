@@ -14,7 +14,6 @@ class Adapter {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      // body: JSON.stringify({name: `${name}`, category: `${category}`, total: `${total}`, due_date: `${due_date}`, owner_id: `${owner_id}`, payers: `${payers}`})
 
       body: JSON.stringify({
         "name": name,

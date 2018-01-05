@@ -197,18 +197,17 @@ const Bill = (function createBillClass() {
         payers.push({amount: amount2, payer: payer2Id})
       }
 
+      // START HERE TOMORROW MORNING
+
       Adapter.createBill(name, category, total, due_date, owner_id, payers).then(json => {
         let bill = new Bill(json)
-
+        console.log(bill)
         // replace with show Bill render on merge
         document.getElementById('main-header').innerText = "Your Bill"
         App.main.innerHTML = 
           `<h2>${bill.name}</h2>
         `
       })
-
-
-
 
     }
 

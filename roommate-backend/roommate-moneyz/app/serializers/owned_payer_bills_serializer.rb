@@ -5,8 +5,4 @@ class OwnedPayerBillsSerializer < ActiveModel::Serializer
     object.payer.name
   end
 
-  # def payer_id
-  #   object.payer.id
-  # end
-
 end
