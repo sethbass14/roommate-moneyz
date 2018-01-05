@@ -9,6 +9,7 @@ const User = (function createUserClass() {
       this.house = data.house
       this.payer_bills = data.payer_bills
       this.owned_bills = data.owned_bills
+      this.avatar = data.avatar
       privateCurrentUser = this
     }
 
