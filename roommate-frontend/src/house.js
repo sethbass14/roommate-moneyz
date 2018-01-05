@@ -30,8 +30,18 @@ const House = (function createHouse() {
 						</div>
 					</div>
 				</div>`
+
+				document.getElementById("list-roommates").innerHTML += House.renderRoommates().join("")
+
 		}
-		
+		static renderRoommates() {
+			let filteredRoommates = House.currentHouse().roommates.filter(roommate => roommate.id !== User.currentUser().id)
+			return filteredRoommates.map(roommate => `
+				<br>
+				<h3>${roommate.name}, ${roommate.phone}</h3><br>
+				`)
+		}
+
 	}
 
 })()
