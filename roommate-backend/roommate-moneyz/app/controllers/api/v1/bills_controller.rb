@@ -21,7 +21,7 @@ class Api::V1::BillsController < ApplicationController
       users.each do |user| 
         bill.payers << user
         current = bill.payer_bills.last
-
+        # create JOIN INSTANCE INSTEAD OF ITERATING
         amount = 0
         payers.each do |obj| 
           if obj["payer"] == user.id
