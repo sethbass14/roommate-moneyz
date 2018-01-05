@@ -12,3 +12,4 @@ class Adapter {
       method: 'DELETE'
     })
   }
+}
