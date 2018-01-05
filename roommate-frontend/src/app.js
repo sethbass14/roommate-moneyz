@@ -12,11 +12,12 @@ class App {
         let payBill = new Bill(payerBill.bill)
         payBill.amount = payerBill.amount
         payBill.owner = payerBill.bill.owner_name
-        console.log(payBill)
+        payBill.paid = payerBill.paid
+        payBill.date_paid = payerBill.date_paid
       })
-
-      const a = new House(user.house)
-    })
+      new House(user.house)
+      })
+    .then(house => User.houseInfo(house))
 
     App.main = document.getElementById("main")
 
@@ -27,17 +28,21 @@ class App {
 
 
 
-  }
+    }
+
 
   static navFunctions(event) {
     if (event.target.id === "house") {
-      return User.house()
+      return User.houseInfo()
     } else if (event.target.id === "createBill") {
       return Bill.createBillForm()
+    } else if (event.target.id === "currentBills") {
+      return User.currentBills()
     } else if (event.target.id === "billHistory") {
       return User.billHistory()
     }
   }
+
 
 
   static contentFunctions(event) {
@@ -50,8 +55,10 @@ class App {
       //This is very hairy, but it works. I had to refactor some of the bill rendering functions to reuse the code.
         const billId = parseInt(event.target.parentElement.parentElement.dataset.id)
         User.ownedBillShow(billId)
-
+    } else if (event.target.id === "paid") {
+        return Bill.paidBill()
     }
   }
+
 
 }

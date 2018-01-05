@@ -56,6 +56,11 @@ body {
 
 }
 
+#main-image {
+  display: block;
+  margin: auto;
+}
+
 /*
  * Dashboard
  */

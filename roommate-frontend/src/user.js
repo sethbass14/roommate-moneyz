@@ -38,6 +38,7 @@ const User = (function createUserClass() {
       return currentUser
     }
 
+
     static billHeaderOwned() {
       App.main.innerHTML = `
         <br>
@@ -52,7 +53,10 @@ const User = (function createUserClass() {
         </table>`
     }
 
-    static billHistory() {
+
+
+    static currentBills() {
+
       if (User.currentUser().payer_bills.length) {
         Bill.billHeaderPayer();
       } else if (User.currentUser().payer_bills.length === 0) {
@@ -67,10 +71,20 @@ const User = (function createUserClass() {
       }
     }
 
+
     static ownedBillShow(billId) {
       User.billHeaderOwned()
       const billHeader = document.getElementById('billHeaderOwned')
       billHeader.innerHTML += Bill.findBillById(billId).renderOwnedShowBillRow() + User.currentUser().renderPayers(billId)
+    }
+
+    static billHistory() {
+      Bill.renderBillHistory()
+    }
+
+    static houseInfo() {
+      House.renderHouse()
+
     }
 
   }
