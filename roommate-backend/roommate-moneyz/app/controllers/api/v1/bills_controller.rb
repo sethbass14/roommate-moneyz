@@ -11,9 +11,20 @@ class Api::V1::BillsController < ApplicationController
   end
 
  def create
-
     bill = Bill.new(bill_params)
     if bill.save
+      users = bill_params.payers.map {|obj| obj.payer}
+      users = users.map {|userId| User.all.find(userId)}
+
+      users.each {|user| bill.payer = user}
+      
+      bill_params.payers.each do |obj|
+        payerBill = PayerBill.all.find do |payerbill|
+          payerbill.payer.id = obj.payer
+        end
+        payerBill.amount = obj.amount
+      end
+
       render json: bill, status: 201
     else
       render json: {message: "Error with your data"}, status: 400
@@ -36,7 +47,7 @@ class Api::V1::BillsController < ApplicationController
 
  private
   def bill_params
-    params.permit(:name, :total, :category, :due_date, :owner_id)
+    params.permit(:name, :total, :category, :due_date, :owner_id, :payers)
   end
 
  def set_bill

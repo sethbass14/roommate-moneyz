@@ -31,7 +31,5 @@ const User = (function createUserClass() {
       }
     }
 
-
   }
-}
-)()
+})()

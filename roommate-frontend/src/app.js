@@ -13,9 +13,8 @@ class App {
         payBill.amount = payerBill.amount
         payBill.owner = payerBill.bill.owner_name
       })
+      new House(user.house)
 
-      const a = new House(user.house)
-      debugger
     })
 
     App.main = document.getElementById("main")
@@ -37,6 +36,10 @@ class App {
   }
 
   static contentFunctions() {
-    console.log('content')
+    if (event.target.id === "buttonAddRoommate") {
+      return Bill.addRoommateForm()
+    } else if (event.target.id === "submitNewBill") {
+      return Bill.createBill()
+    }
   }
 }

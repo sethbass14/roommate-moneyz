@@ -14,6 +14,12 @@ const House = (function createHouse() {
 			return house
 		}
 
+    static roomies() {
+      return House.currentHouse().roommates.filter(roommates => {
+        return roommates.name !== User.currentUser().name
+      })
+    }
+
 	}
 
 })()
