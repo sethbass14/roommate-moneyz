@@ -13,10 +13,10 @@ class Adapter {
 
       body: JSON.stringify({
         "name": name,
-        "category": category, 
-        "total": total, 
-        "due_date": due_date, 
-        "owner_id": owner_id, 
+        "category": category,
+        "total": total,
+        "due_date": due_date,
+        "owner_id": owner_id,
         "payers": payers
       })
     })
@@ -24,7 +24,15 @@ class Adapter {
 
   static deleteBill(id) {
     return fetch(`http://localhost:3000/api/v1/bills/${id}`, {
-      method: 'DELETE'
+      method: "DELETE"
+    })
+  }
+
+  static paidBill(billId, userId) {
+    return fetch('http://localhost:3000/api/v1/paid', {
+      method: "PATCH",
+      headers: {"Accept": "application/json", "Content-Type": "application/json"},
+      body: JSON.stringify({bill_id: billId, payer_id: userId})
     })
   }
 }

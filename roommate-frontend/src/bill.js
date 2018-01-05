@@ -232,23 +232,17 @@ const Bill = (function createBillClass() {
       })
 
     }
-
     static paidBill(){
       let billId = parseInt(event.target.dataset.id)
       let parentElement = event.target.parentElement.parentElement.parentElement
       let childElement = event.target.parentElement.parentElement
       let payerBill = User.currentUser().payer_bills.find(payerBill => payerBill.bill.id === billId)
 
-      fetch('http://localhost:3000/api/v1/paid', {
-        method: "PATCH",
-        headers: {"Accept": "application/json", "Content-Type": "application/json"},
-        body: JSON.stringify({bill_id: `${billId}`, payer_id: `${User.currentUser().id}`})
-      })
+      Adapter.paidBill(billId, User.currentUser().id)
 
       parentElement.removeChild(childElement)
       payerBill.paid = true
       payerBill.date_paid = new Date()
-
     }
 
     static renderBillHistory(){
