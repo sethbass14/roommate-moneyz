@@ -197,7 +197,6 @@ const Bill = (function createBillClass() {
         payers.push({amount: amount2, payer: payer2Id})
       }
 
-
       Adapter.createBill(name, category, total, due_date, owner_id, payers).then(json => {
         let bill = new Bill(json)
 

@@ -3,5 +3,5 @@ class PayerBill < ApplicationRecord
   belongs_to :payer, :class_name => 'User'
 
   
-  validates :amount, numericality: {greater_than: 0.00}, presence: true
+  #validates :amount, numericality: {greater_than: 0.00}, presence: true
 end
