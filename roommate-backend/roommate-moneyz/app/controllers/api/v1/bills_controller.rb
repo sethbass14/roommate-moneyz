@@ -13,6 +13,7 @@ class Api::V1::BillsController < ApplicationController
  def create
     bill = Bill.new(bill_params["bill"])
     if bill.save
+
       payers = bill_params["payers"]
 
       userIds = payers.map {|obj| obj["payer"]}
@@ -22,6 +23,9 @@ class Api::V1::BillsController < ApplicationController
         bill.payers << user
         current = bill.payer_bills.last
         # create JOIN INSTANCE INSTEAD OF ITERATING
+        # @payer_bill = PayerBill.new(bill_id: bill.id, payer_id: params[:payer_id])
+        # @payer_bill.save
+        
         amount = 0
         payers.each do |obj| 
           if obj["payer"] == user.id

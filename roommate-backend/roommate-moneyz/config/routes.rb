@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :users
       resources :bills
       delete 'payer', to: 'users#delete_payer_bill'
+      patch 'paid', to: 'users#paid_bill'
     end
   end
 

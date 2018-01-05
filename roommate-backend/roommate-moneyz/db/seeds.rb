@@ -13,6 +13,10 @@ User.create(name: "Seth", phone: "1120938092", house_id: 1)
 Bill.create(name: "Electricity", total: 90.0, category: "Utilities", due_date: "Jan 31, 2018", owner_id: 1)
 Bill.create(name: "Water", total: 120.0, category: "Utilities", due_date: "Feb 01, 2018", owner_id: 2)
 Bill.create(name: "Gas", total: 300.0, category: "Polar Vortex Survival", due_date: "Jan 31, 2018", owner_id: 2)
+Bill.create(name: "Paper Products", total: 12.0, category: "Groceries", due_date: "Jan 31, 2018", owner_id: 1)
+
+
+
 
 PayerBill.create(bill_id: 1, payer_id: 2, amount: 30.0)
 PayerBill.create(bill_id: 1, payer_id: 3, amount: 30.0)
@@ -20,3 +24,5 @@ PayerBill.create(bill_id: 2, payer_id: 1, amount: 40.0)
 PayerBill.create(bill_id: 2, payer_id: 3, amount: 40.0)
 PayerBill.create(bill_id: 3, payer_id: 1, amount: 100.0)
 PayerBill.create(bill_id: 3, payer_id: 3, amount: 100.0)
+PayerBill.create(bill_id: 4, payer_id: 2, amount: 4.00)
+PayerBill.create(bill_id: 4, payer_id: 1, amount: 4.00)
