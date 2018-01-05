@@ -26,7 +26,7 @@ const Bill = (function createBillClass() {
         <td>${this.category}</td>
         <td>${this.due_date}</td>
         <td>${this.owner}</td>
-        <td><button data-id=${this.id} id="paid">Paid</button></td>
+        <td><button class="btn" data-id=${this.id} id="paid">Paid</button></td>
       </tr>`
     }
 
@@ -84,8 +84,8 @@ const Bill = (function createBillClass() {
         <td>${this.total}</td>
         <td>${this.category}</td>
         <td>${this.due_date}</td>
-        <td><button data-id=${this.id} id="edit">Edit</button></td>
-        <td><button data-id=${this.id} id="delete">Delete</button></td>
+        <td><button class="btn" data-id=${this.id} id="edit">Edit</button></td>
+        <td><button class="btn" data-id=${this.id} id="delete">Delete</button></td>
       </tr>`
     }
 
@@ -153,8 +153,8 @@ const Bill = (function createBillClass() {
               </select>
             </div>
           </div>
-          <button type="button" class="btn btn-outline-primary" style="float: right" id="buttonAddRoommate">Add Another Roommate</button><br><br><hr>
-          <button type="submit" class="btn btn-primary" id="submitNewBill">Submit</button>
+          <button type="button" class="btn" style="float: right" id="buttonAddRoommate">Add Another Roommate</button><br><br><hr>
+          <button type="submit" class="btn" id="submitNewBill">Submit</button>
         </form>
         </div>
         </div>

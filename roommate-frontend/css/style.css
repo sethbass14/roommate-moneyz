@@ -1,25 +1,6 @@
-/*
- * Base structure
- */
-
-/* Move down content because we have a fixed navbar that is 3.5rem tall */
 body {
-  padding-top: 3.5rem;
+  padding-top: 4rem;
 }
-
-/*
- * Typography
- */
-
-/*h1 {
-  padding-bottom: 9px;
-  margin-bottom: 20px;
-  border-bottom: 1px solid #eee;
-}*/
-
-/*
- * Sidebar
- */
 
 .sidebar {
   position: fixed;
@@ -27,10 +8,11 @@ body {
   bottom: 0;
   left: 0;
   z-index: 1000;
-  padding: 20px 0;
+  padding: 30px 0;
   overflow-x: hidden;
-  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-  border-right: 1px solid #eee;
+  overflow-y: auto;
+  border-right: 1px solid #000000;
+  background-color: #A0A0A0;
 }
 
 .sidebar .nav {
@@ -47,13 +29,22 @@ body {
 
 .sidebar .nav-link {
   border-radius: 0;
+  color: #000000;
 }
 
-/* allows you to click on the name of the bill in bill history*/
+.sidebar a {
+  font-size: 20px;
+  font-weight: 500;
+}
+
 .billName:hover {
   color: #157EFB;
   cursor: pointer;
 
+}
+
+.navbar {
+  background-color: #000000;
 }
 
 #main-image {
@@ -61,16 +52,12 @@ body {
   margin: auto;
 }
 
-/*
- * Dashboard
- */
-
-/* Placeholders */
-/*.placeholders {
-  padding-bottom: 3rem;
+.btn {
+  background-color: #FFFFFF;
+  color: #000000;
+  border: 1px solid #000000;
 }
 
-.placeholder img {
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
-}*/
+.btn:hover{
+  background-color: #A0A0A0;
+}
