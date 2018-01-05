@@ -12,9 +12,46 @@ const User = (function createUserClass() {
       privateCurrentUser = this
     }
 
+    renderPayers(bill_id) {
+      const ownedBill = this.owned_bills.find(bill => bill.id === bill_id)
+      let header = `
+      <table id="payers" class="table">
+        <tr>
+        <th>Roomie</th>
+        <th>$$$ THEY OWE YOU</th>
+        </tr>
+      </table>
+      `
+      // debugger
+      ownedBill.payer_bills.map(payer_bill => {
+        header += `
+        <tr data-id=${payer_bill.id}>
+          <td>${payer_bill.payer_name}</p></td>
+          <td>$${payer_bill.amount}</td>
+        </tr>`
+      })
+
+      return header
+
+    }
+
     static currentUser() {
       const currentUser = privateCurrentUser
       return currentUser
+    }
+
+    static billHeaderOwned() {
+      App.main.innerHTML = `
+        <br>
+        <h2>Money$$$ To Collect</h2>
+        <table id="billHeaderOwned" class="table">
+        <tr>
+        <th>Name</th>
+        <th>Total</th>
+        <th>Category</th>
+        <th>Due Date</th>
+        </tr>
+        </table>`
     }
 
     static billHistory() {
@@ -32,7 +69,5 @@ const User = (function createUserClass() {
       }
     }
 
-
   }
-}
-)()
+})()

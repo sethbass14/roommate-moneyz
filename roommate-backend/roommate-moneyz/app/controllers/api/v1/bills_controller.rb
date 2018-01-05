@@ -14,6 +14,8 @@ class Api::V1::BillsController < ApplicationController
 
     bill = Bill.new(bill_params)
     if bill.save
+      @payer_bill = PayerBill.new(bill_id: bill.id, payer_id: params[:payer_id])
+      @payer_bill.save
       render json: bill, status: 201
     else
       render json: {message: "Error with your data"}, status: 400

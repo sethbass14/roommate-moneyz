@@ -69,7 +69,7 @@ const Bill = (function createBillClass() {
         <th>Delete</th>
         </tr>
         </table>`
-        // Bill.buildOwnedRows()
+        // Bill.buildOwnedRows() I abstracted this function out below. I may put it back
     }
 
     static buildOwnedRows() {
@@ -88,6 +88,16 @@ const Bill = (function createBillClass() {
         <td>${this.due_date}</td>
         <td><button data-id=${this.id} id="edit">Edit</button></td>
         <td><button data-id=${this.id} id="delete">Delete</button></td>
+      </tr>`
+    }
+
+    renderOwnedShowBillRow() {
+      return `
+      <tr data-id=${this.id}>
+        <td><p class="billName">${this.name}</p></td>
+        <td>${this.total}</td>
+        <td>${this.category}</td>
+        <td>${this.due_date}</td>
       </tr>`
     }
 
