@@ -164,7 +164,7 @@ const Bill = (function createBillClass() {
 
     static addRoommateForm() {
       // right now can only add 2 roommates onto bill...
-      // glitch with dropdown 
+      // glitch with dropdown
       // make code for generating HTML DRY on refactor
       // for refactoring:
       // function renderFormOption() {
@@ -225,7 +225,7 @@ const Bill = (function createBillClass() {
         console.log(bill)
         // replace with show Bill render on merge
         document.getElementById('main-header').innerText = "Your Bill"
-        App.main.innerHTML = 
+        App.main.innerHTML =
           `<h2>${bill.name}</h2>
         `
         // also need to update Table to reflect change
@@ -237,19 +237,22 @@ const Bill = (function createBillClass() {
       let billId = parseInt(event.target.dataset.id)
       let parentElement = event.target.parentElement.parentElement.parentElement
       let childElement = event.target.parentElement.parentElement
+      let payerBill = User.currentUser().payer_bills.find(payerBill => payerBill.bill.id === billId)
 
       fetch('http://localhost:3000/api/v1/paid', {
         method: "PATCH",
         headers: {"Accept": "application/json", "Content-Type": "application/json"},
-        body: JSON.stringify({bill_id: `${billId}`, payer_id: 2})
+        body: JSON.stringify({bill_id: `${billId}`, payer_id: `${User.currentUser().id}`})
       })
 
       parentElement.removeChild(childElement)
+      payerBill.paid = true
+      payerBill.date_paid = new Date()
 
     }
 
     static renderBillHistory(){
-      document.getElementById('main-header').innerHTML = "Paid Bill History"
+      document.getElementById('main-header').innerHTML = "Bill History"
 
       App.main.innerHTML = `
         <br>
@@ -264,21 +267,19 @@ const Bill = (function createBillClass() {
         </tr>
         </table>`
 
-      let rows = Bill.allBills().filter(bill => bill.amount && bill.paid === true).map(bill => bill.renderBillHistoryRow()).join("")
+      let rows = User.currentUser().payer_bills.filter(payerBill => payerBill.paid === true).map(payerBill => {
+        return `
+          <tr data-id=${payerBill.id}>
+            <td>${payerBill.bill.name}</td>
+            <td>${payerBill.amount}</td>
+            <td>${payerBill.bill.category}</td>
+            <td>${payerBill.bill.due_date}</td>
+            <td>${payerBill.bill.owner_name}</td>
+            <td>${payerBill.date_paid}</td>
+          </tr>`
+      }).join("")
 
       document.getElementById('paidBillHistory').innerHTML += rows
-    }
-
-    renderBillHistoryRow() {
-      return `
-      <tr data-id=${this.id}>
-        <td>${this.name}</td>
-        <td>${this.amount}</td>
-        <td>${this.category}</td>
-        <td>${this.due_date}</td>
-        <td>${this.owner}</td>
-        <td>${this.date_paid}</td>
-      </tr>`
     }
 
   }
