@@ -19,7 +19,7 @@ class Adapter {
         "owner_id": owner_id,
         "payers": payers
       })
-    })
+    }).then(resp => resp.json())
   }
 
   static deleteBill(id) {

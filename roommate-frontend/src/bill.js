@@ -222,12 +222,10 @@ const Bill = (function createBillClass() {
 
       Adapter.createBill(name, category, total, due_date, owner_id, payers).then(json => {
         let bill = new Bill(json)
-        console.log(bill)
+        bill.payer_bills = json.payer_bills
+        User.currentUser().owned_bills.push(bill)
         // replace with show Bill render on merge
-        document.getElementById('main-header').innerText = "Your Bill"
-        App.main.innerHTML =
-          `<h2>${bill.name}</h2>
-        `
+        User.ownedBillShow(bill.id)
         // also need to update Table to reflect change
       })
 
