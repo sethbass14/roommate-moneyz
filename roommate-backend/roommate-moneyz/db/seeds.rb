@@ -7,9 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 House.create(name: "Sock House", address: "123 Fig Street")
-User.create(name: "Erica", phone: "1234567890", house_id: 1)
-User.create(name: "Connie", phone: "1304958309", house_id: 1)
-User.create(name: "Seth", phone: "1120938092", house_id: 1)
+User.create(name: "Erica", phone: "1234567890", house_id: 1, avatar: "http://is2.mzstatic.com/image/thumb/Purple30/v4/e1/27/30/e127305d-97be-eb78-f9c7-a3dc9ac061a9/source/1200x630bb.jpg")
+User.create(name: "Connie", phone: "1304958309", house_id: 1, avatar: "https://t1.rbxcdn.com/809f77fb98249e34890683e7b200d35e")
+User.create(name: "Seth", phone: "1120938092", house_id: 1, avatar: "https://www.abeautifulsite.net/uploads/2014/08/bit-face.png")
 Bill.create(name: "Electricity", total: 90.0, category: "Utilities", due_date: "Jan 31, 2018", owner_id: 1)
 Bill.create(name: "Water", total: 120.0, category: "Utilities", due_date: "Feb 01, 2018", owner_id: 2)
 Bill.create(name: "Gas", total: 300.0, category: "Polar Vortex Survival", due_date: "Jan 31, 2018", owner_id: 2)
