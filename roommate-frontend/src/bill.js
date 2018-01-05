@@ -207,6 +207,7 @@ const Bill = (function createBillClass() {
         App.main.innerHTML = 
           `<h2>${bill.name}</h2>
         `
+        // also need to update Table to reflect change
       })
 
     }
