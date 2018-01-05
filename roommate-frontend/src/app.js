@@ -49,9 +49,10 @@ class App {
     } else if (event.target.className === 'billName') {
       //This is very hairy, but it works. I had to refactor some of the bill rendering functions to reuse the code.
         const billId = parseInt(event.target.parentElement.parentElement.dataset.id)
-        User.billHeaderOwned()
-        const billHeader = document.getElementById('billHeaderOwned')
-        billHeader.innerHTML += Bill.findBillById(billId).renderOwnedShowBillRow() + User.currentUser().renderPayers(billId)
+        User.ownedBillShow(billId)
+        // User.billHeaderOwned()
+        // const billHeader = document.getElementById('billHeaderOwned')
+        // billHeader.innerHTML += Bill.findBillById(billId).renderOwnedShowBillRow() + User.currentUser().renderPayers(billId)
 
       // return Bill.showBill()
     }

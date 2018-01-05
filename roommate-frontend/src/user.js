@@ -32,7 +32,16 @@ const User = (function createUserClass() {
       })
 
       return header
+    }
 
+    renderPayerBills() {
+      return ownedBill.payer_bills.map(payer_bill => {
+        header += `
+        <tr data-id=${payer_bill.id}>
+          <td>${payer_bill.payer_name}</p></td>
+          <td>$${payer_bill.amount}</td>
+        </tr>`
+      }).join('')
     }
 
     static currentUser() {
@@ -67,6 +76,12 @@ const User = (function createUserClass() {
       } else if (User.currentUser().owned_bills.length === 0) {
         Bill.noOwnedBills();
       }
+    }
+
+    static ownedBillShow(billId) {
+      User.billHeaderOwned()
+      const billHeader = document.getElementById('billHeaderOwned')
+      billHeader.innerHTML += Bill.findBillById(billId).renderOwnedShowBillRow() + User.currentUser().renderPayers(billId)
     }
 
   }
