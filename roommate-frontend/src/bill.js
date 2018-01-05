@@ -235,12 +235,23 @@ const Bill = (function createBillClass() {
       let parentElement = event.target.parentElement.parentElement.parentElement
       let childElement = event.target.parentElement.parentElement
       let payerBill = User.currentUser().payer_bills.find(payerBill => payerBill.bill.id === billId)
+      let date = new Date()
+      let year = date.getFullYear()
+      let month = date.getMonth()+1
+      let dt = date.getDate()
+
+      if (dt < 10) {
+        dt = '0' + dt
+      }
+      if (month < 10) {
+        month = '0' + month
+      }
 
       Adapter.paidBill(billId, User.currentUser().id)
 
       parentElement.removeChild(childElement)
       payerBill.paid = true
-      payerBill.date_paid = new Date()
+      payerBill.date_paid = (year+'-' + month + '-'+dt)
     }
 
     static renderBillHistory(){

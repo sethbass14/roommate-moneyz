@@ -51,7 +51,8 @@ const House = (function createHouse() {
 							<img width="100px" height="100px" src=${roommate.avatar}>
 						</div>
 						<div class="col-sm-9">
-							<h3>${roommate.name}, ${roommate.phone}</h3><br>
+							<h3>${roommate.name}</h3><br>
+							<h3>Phone: ${roommate.phone}</h3>
 						</div>
 					</div>
 				</div>
