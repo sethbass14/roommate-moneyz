@@ -38,6 +38,13 @@ class Api::V1::UsersController < ApplicationController
     render json: {message: "successfully destroyed", payerBillId: @payer_bill.id }
   end
 
+  def paid_bill
+    @payer_bill = PayerBill.where(payer_id: params[:payer_id], bill_id: params[:bill_id])[0]
+    @payer_bill.paid = true
+    @payer_bill.save
+    render json: {message: "successfully paid", payerBillId: @payer_bill.id }
+  end
+
  private
   def user_params
     params.permit(:name, :phone, :house_id)
