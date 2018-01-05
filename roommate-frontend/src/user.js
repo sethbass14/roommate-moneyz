@@ -22,7 +22,6 @@ const User = (function createUserClass() {
         </tr>
       </table>
       `
-      // debugger
       ownedBill.payer_bills.map(payer_bill => {
         header += `
         <tr data-id=${payer_bill.id}>
@@ -32,16 +31,6 @@ const User = (function createUserClass() {
       })
 
       return header
-    }
-
-    renderPayerBills() {
-      return ownedBill.payer_bills.map(payer_bill => {
-        header += `
-        <tr data-id=${payer_bill.id}>
-          <td>${payer_bill.payer_name}</p></td>
-          <td>$${payer_bill.amount}</td>
-        </tr>`
-      }).join('')
     }
 
     static currentUser() {
