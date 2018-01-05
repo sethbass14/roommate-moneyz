@@ -148,7 +148,7 @@ const Bill = (function createBillClass() {
         <td>${this.category}</td>
         <td>${this.due_date}</td>
         <td>${this.owner}</td>
-        <td>placeholder</td>
+        <td>${this.date_paid}</td>
       </tr>`
     }
   }

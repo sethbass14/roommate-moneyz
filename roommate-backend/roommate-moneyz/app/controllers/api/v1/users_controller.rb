@@ -41,6 +41,7 @@ class Api::V1::UsersController < ApplicationController
   def paid_bill
     @payer_bill = PayerBill.where(payer_id: params[:payer_id], bill_id: params[:bill_id])[0]
     @payer_bill.paid = true
+    @payer_bill.date_paid = Date.today
     @payer_bill.save
     render json: {message: "successfully paid", payerBillId: @payer_bill.id }
   end

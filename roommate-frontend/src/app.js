@@ -13,6 +13,7 @@ class App {
         payBill.amount = payerBill.amount
         payBill.owner = payerBill.bill.owner_name
         payBill.paid = payerBill.paid
+        payBill.date_paid = payerBill.date_paid
       })
       new House(user.house)
       })
