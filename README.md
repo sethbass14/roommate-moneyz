@@ -2,6 +2,7 @@
 
 Roommate-moneyz is a bill splitting app for common apartment dwellers to keep track of household bills. The app manages shared expenses such as rent, utilities, groceries, and whatever other expenses that require a shared burden. By keeping track of original payer of the bill, the app manages all of the money that you are owed by your roommates and the money that you owe to your other roommates. Inspired by Splitwise. Currently, this app is a demo with a hardcoded user.
 
+Link to demo: https://youtu.be/h8Jtt0EM7_4
 ## Getting Started
 
 ### Backend
