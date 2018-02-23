@@ -223,6 +223,7 @@ const Bill = (function createBillClass() {
       Adapter.createBill(name, category, total, due_date, owner_id, payers).then(json => {
         let bill = new Bill(json)
         bill.payer_bills = json.payer_bills
+        bill.payers = json.payer_bills
         User.currentUser().owned_bills.push(bill)
         // replace with show Bill render on merge
         User.ownedBillShow(bill.id)
