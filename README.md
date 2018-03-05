@@ -12,8 +12,9 @@ Located in `roommate-backend/roommate-moneyz`, the backend is a Rails directory 
 1. Fork and Clone this repo.
 2. In your terminal navigate to `roommate-backend/roommate-moneyz`
 3. Run `bundle install`
-4. Run `rails db:migrate` to set up database
-5. Run `rails server` to fire up the server
+4. Run `rails db:create` to create database
+5. Run `rails db:migrate` to set up database
+6. Run `rails server` to fire up the server
 
 ### Frontend
 
